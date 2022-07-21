@@ -62,9 +62,12 @@ class HomeView extends GetView<HomeController> {
                       height: (size.width - 3) / 3,
                       decoration: BoxDecoration(
                           image: DecorationImage(
-                              image: NetworkImage(controller
-                                  .instagramposts[index].mediaUrl
-                                  .toString()),
+                              image: NetworkImage((controller
+                                          .instagramposts[index].mediaType ==
+                                      'VIDEO')
+                                  ? 'https://images.unsplash.com/photo-1484807352052-23338990c6c6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'
+                                  : controller.instagramposts[index].mediaUrl
+                                      .toString()),
                               fit: BoxFit.cover)),
                     );
                   }),
