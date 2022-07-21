@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:logininstance/app/modules/signin/views/instagram_view.dart';
-import 'package:snapkit/snapkit.dart';
+// import 'package:snapkit/snapkit.dart';
 
 import '../controllers/signin_controller.dart';
 
@@ -17,96 +17,13 @@ class SigninView extends StatefulWidget {
 class _SigninViewState extends State<SigninView> {
   SigninController controller = Get.put(SigninController());
 
-    GlobalKey<ScaffoldMessengerState> _scaffoldMessengerKey =
-      GlobalKey<ScaffoldMessengerState>();
-
-
-  String _platformVersion = 'Unknown';
-  SnapchatUser? _snapchatUser;
-  Snapkit _snapkit = Snapkit();
-
-  TextEditingController _regionController = TextEditingController(text: 'US');
-  TextEditingController _phoneController =
-      TextEditingController(text: '0001234567');
-
-  late StreamSubscription<SnapchatUser?> subscription;
-
-  bool _isSnackOpen = false;
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      platformVersion = await Snapkit.platformVersion;
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
-  }
-
-  Future<void> loginUser() async {
-    try {
-      bool installed = await _snapkit.isSnapchatInstalled;
-      if (installed)
-        await _snapkit.login();
-      else if (!_isSnackOpen) {
-        _isSnackOpen = true;
-        _scaffoldMessengerKey.currentState!
-            .showSnackBar(
-                SnackBar(content: Text('Snapchat App not Installed.')))
-            .closed
-            .then((_) {
-          _isSnackOpen = false;
-        });
-      }
-    } on PlatformException catch (exception) {
-      print(exception);
-    }
-  }
-
-  Future<void> logoutUser() async {
-    try {
-      await _snapkit.logout();
-    } on PlatformException catch (exception) {
-      print(exception);
-    }
-
-    setState(() {
-      _snapchatUser = null;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    initPlatformState();
-
-    // _snapkit.addAuthStateListener(this);
-
-    subscription = _snapkit.onAuthStateChanged.listen((SnapchatUser? user) {
-      setState(() {
-        _snapchatUser = user;
-      });
-    });
-  }
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
     Widget _submitButton() {
       return InkWell(
         onTap: () {
-     loginUser();
+    //  loginUser();
         },
         child: Container(
           width: MediaQuery.of(context).size.width,

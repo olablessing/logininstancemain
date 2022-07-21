@@ -43,7 +43,9 @@ class InstagramModel {
       'username': json.decode(responseNode.body)['username'],
     };
     username = json.decode(responseNode.body)['username'];
+        box.write('username', username);
     print('username: $username');
+
     return instaProfile != null ? true : false;
   }
 }

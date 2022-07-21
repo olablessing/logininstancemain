@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:snapkit/snapkit.dart';
+// import 'package:snapkit/snapkit.dart';
 
 class SigninController extends GetxController {
 

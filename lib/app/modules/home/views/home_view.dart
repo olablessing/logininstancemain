@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:logininstance/app/data/global.dart';
 import 'package:logininstance/app/modules/signin/controllers/signin_controller.dart';
 
 import '../controllers/home_controller.dart';
@@ -34,9 +35,8 @@ class HomeView extends GetView<HomeController> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          
                           Text(
-                            'Hi, ${logincontroller.instagramname}!',
+                            'Hi, ${box.read('username') ?? logincontroller.instagramname}!',
                             style: GoogleFonts.nunito(
                                 color: Colors.grey[800],
                                 fontSize: 26,
@@ -45,11 +45,9 @@ class HomeView extends GetView<HomeController> {
                           ),
                         ],
                       ),
-                    
                     ],
                   ),
                 ),
-                
                 Text(
                   'Number of Posts ${controller.instagramposts.length}',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
